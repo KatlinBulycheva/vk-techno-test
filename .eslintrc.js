@@ -16,5 +16,6 @@ module.exports = {
     'no-use-before-define': 0,
     'prefer-destructuring': 0,
     'no-plusplus': 0,
+    'eol-last': 0,
   },
 };

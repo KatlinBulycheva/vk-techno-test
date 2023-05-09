@@ -5,11 +5,52 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>technoTest</title>
+    <link rel="stylesheet" href="./style.css">
     <script defer src="./script.js"></script>
 </head>
 <body>
     <header></header>
-    <main></main>
+
+    <main>
+        <section>
+            <form data-form class="form">
+    
+                <label class="form-group">
+                    Номер башни
+                    <select name="tower">
+                        <option value="А">А</option>
+                        <option value="Б">Б</option>
+                    </select>
+                </label>
+    
+                <label class="form-group">
+                    Номер этажа
+                    <select name="floor" id="floor">
+                    </select>
+                </label>
+    
+                <label class="form-group">
+                    Номер переговорки
+                    <select name="room" id="room">
+                    </select>
+                </label>
+    
+                <label class="form-group">
+                    Дата и время
+                    <input type="date" name="date" required>
+                </label>
+    
+                <label class="form-group">
+                    Комментарий
+                    <textarea name="comment" cols="20" rows="3"></textarea>
+                </label>
+    
+                <button type="submit">Отправить</button>
+                <button type="reset">Очистить</button>
+              </form> 
+        </section>
+    </main>
+
     <footer></footer>
 </body>
 </html>
