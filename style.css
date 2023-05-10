@@ -1,5 +1,26 @@
+main {
+    padding: 20px;
+}
+
+#form {
+    width: 450px;
+}
+
 .form-group {
     display: flex;
     flex-direction: column;
     gap: 5px;
+}
+
+@media (max-width: 1000px) {
+    #form {
+        width: 400px;
+    }
+}
+
+@media (max-width: 300px) {
+    .container-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
 }
