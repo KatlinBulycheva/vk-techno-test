@@ -1,3 +1,5 @@
+const KEY_FOR_LS = 'VK-TECHNO-TEST';
+
 const $applicantForm = document.querySelector('[data-form]');
 // console.dir($applicantForm);
 const $selectFloor = document.querySelector('#floor');
@@ -21,31 +23,45 @@ for (let room = minRoomNumb; room <= maxRoomNumb; room++) {
   $selectRoom.appendChild(newOption);
 }
 
+const dataFromLS = localStorage.getItem(KEY_FOR_LS);
+const preparedDataFromLS = dataFromLS && JSON.parse(dataFromLS);
+
+if (preparedDataFromLS) {
+  Object.keys(preparedDataFromLS).forEach((key) => {
+    $applicantForm[key].value = preparedDataFromLS[key];
+  });
+}
+
 $durationValue.textContent = `${$rangeInput.value} ч`;
 $rangeInput.addEventListener('input', (event) => {
   $durationValue.textContent = `${event.target.value} ч`;
 });
+
 $applicantForm.addEventListener('reset', (event) => {
   $durationValue.textContent = `${event.target[4].defaultValue} ч`;
+
+  localStorage.removeItem(KEY_FOR_LS);
 });
 
-function formData(formNode) {
+function getFormData(formNode) {
   const dataOfForm = Object.fromEntries(new FormData(formNode).entries());
-
-  //   const resultData = {
-  //     ...dataOfForm,
-  //     id: +dataOfForm.id,
-  //     rate: +dataOfForm.rate,
-  //     age: +dataOfForm.age,
-  //     favorite: !!dataOfForm.favorite,
-  //   };
   return dataOfForm;
+}
+
+function setLsKey() {
+  const data = getFormData($applicantForm);
+  localStorage.setItem(KEY_FOR_LS, JSON.stringify(data));
 }
 
 $applicantForm.addEventListener('submit', (event) => {
   event.preventDefault();
-  const data = formData($applicantForm);
-
-  console.log(data);
+  const data = getFormData($applicantForm);
   console.log(JSON.stringify(data));
+
+  event.target.reset();
+  setLsKey();
+});
+
+$applicantForm.addEventListener('change', () => {
+  setLsKey();
 });
